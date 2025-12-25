@@ -1,0 +1,7 @@
+{
+  "name": "FoodSS",
+  "description": "A premium food discovery and ordering platform featuring Tinder-style swiping for top-selling dishes, an owner dashboard for restaurant management, and an admin panel for moderation.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

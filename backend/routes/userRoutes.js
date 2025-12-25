@@ -1,0 +1,20 @@
+import { Router } from 'express';
+import { auth } from '../middleware/auth.js';
+import { requireRole } from '../middleware/roles.js';
+import { getApprovedRestaurants, getRestaurantPublic, getSwipeItems, addFavorite, listFavorites, removeFavorite, addCart, updateCart, removeCart, getCart, getProfile, updateProfile } from '../controllers/userController.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
+
+const router = Router();
+router.get('/restaurants', asyncHandler(getApprovedRestaurants));
+router.get('/restaurants/:restaurantId', asyncHandler(getRestaurantPublic));
+router.get('/items/swipe', asyncHandler(getSwipeItems));
+router.post('/user/favorites/:itemId', auth, requireRole('USER'), asyncHandler(addFavorite));
+router.get('/user/favorites', auth, requireRole('USER'), asyncHandler(listFavorites));
+router.delete('/user/favorites/:itemId', auth, requireRole('USER'), asyncHandler(removeFavorite));
+router.post('/user/cart/add', auth, requireRole('USER'), asyncHandler(addCart));
+router.put('/user/cart/update', auth, requireRole('USER'), asyncHandler(updateCart));
+router.delete('/user/cart/remove', auth, requireRole('USER'), asyncHandler(removeCart));
+router.get('/user/cart', auth, requireRole('USER'), asyncHandler(getCart));
+router.get('/user/profile', auth, requireRole('USER'), asyncHandler(getProfile));
+router.put('/user/profile', auth, requireRole('USER'), asyncHandler(updateProfile));
+export default router;
