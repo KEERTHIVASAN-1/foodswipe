@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useApp } from '../store';
 import gsap from 'gsap';
-import { api } from '@/client/api';
+import { api } from '@/api';
 
 interface RestaurantViewProps {
   restaurantId: string;

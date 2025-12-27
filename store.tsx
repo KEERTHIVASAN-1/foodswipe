@@ -1,8 +1,8 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { AppState, User, Restaurant, MenuItem, CartItem, UserRole } from './types';
-import { INITIAL_USER, MOCK_RESTAURANTS, MOCK_MENU_ITEMS, MOCK_REVIEWS } from './constants';
-import { api } from '@/client/api';
+import { MOCK_RESTAURANTS, MOCK_MENU_ITEMS, MOCK_REVIEWS } from './constants';
+import { api } from '@/api';
 
 interface AppContextType extends AppState {
   isLoggedIn: boolean;
@@ -39,7 +39,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         const [rRes, mRes, vRes] = await Promise.all([
           fetch(`${API}/restaurants`),
           fetch(`${API}/items/swipe`), // load top-selling for initial discover; full items are fetched per restaurant view
-          fetch(`${API}/restaurants/${encodeURIComponent('seed')}/reviews`).catch(() => Promise.resolve({ json: async () => MOCK_REVIEWS })) // placeholder endpoint for initial reviews load
+          Promise.resolve({ json: async () => MOCK_REVIEWS })
         ]);
         const [rJson, mJson, vJson] = await Promise.all([
           rRes.json(),
@@ -48,7 +48,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         ]);
         setRestaurants(rJson.data || rJson);
         setMenuItems(mJson.data || mJson);
-        setReviews(vJson.data || vJson);
+        const vData = Array.isArray(vJson) ? vJson : (vJson as any).data || vJson;
+        setReviews(vData as any);
       } catch {
         setRestaurants(MOCK_RESTAURANTS);
         setMenuItems(MOCK_MENU_ITEMS);

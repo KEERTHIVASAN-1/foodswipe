@@ -129,12 +129,14 @@ const Auth: React.FC = () => {
             </div>
           </div>
 
-          <button 
-            type="submit" 
-            className="w-full orange-gradient text-white py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest shadow-xl transform active:scale-95 transition-all mt-6"
-          >
-            {isLogin ? 'Sign In' : 'Create Account'}
-          </button>
+          <div className="sticky bottom-0 left-0 right-0 pt-6 bg-white">
+            <button 
+              type="submit" 
+              className="w-full orange-gradient text-white py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest shadow-xl transform active:scale-95 transition-all"
+            >
+              {isLogin ? 'Sign In' : 'Create Account'}
+            </button>
+          </div>
         </form>
       </motion.div>
     </div>

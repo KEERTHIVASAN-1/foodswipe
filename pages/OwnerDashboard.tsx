@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../store';
 import { MenuItem, Restaurant } from '../types';
-import { api } from '@/client/api';
+import { api } from '@/api';
 
 const OwnerDashboard: React.FC = () => {
   const { currentUser, addMenuItem, removeMenuItem, addRestaurant } = useApp();

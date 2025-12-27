@@ -4,7 +4,7 @@ import { useApp } from '../store';
 import SwipeCard from '../components/SwipeCard';
 import ThreeBackground from '../components/ThreeBackground';
 import { AnimatePresence, motion } from 'framer-motion';
-import { api } from '@/client/api';
+import { api } from '@/api';
 
 const SwipeDiscovery: React.FC = () => {
   const { toggleFavorite, addToCart } = useApp();

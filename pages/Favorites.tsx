@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../store';
 import { motion, AnimatePresence } from 'framer-motion';
-import { api } from '@/client/api';
+import { api } from '@/api';
 
 const Favorites: React.FC = () => {
   const { favorites, toggleFavorite, addToCart } = useApp();

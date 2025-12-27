@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
+import path from 'path';
 
 export const connectDB = async () => {
   const useMemory = process.env.MONGO_IN_MEMORY === 'true';
@@ -8,7 +9,10 @@ export const connectDB = async () => {
     await mongoose.connect(uri, { autoIndex: true, serverSelectionTimeoutMS: 5000 });
   };
   const connectMemory = async () => {
-    const mem = await MongoMemoryServer.create();
+    const mem = await MongoMemoryServer.create({
+      binary: { version: '4.4.10', downloadDir: path.join(process.cwd(), '.mongodb-binaries') },
+      instance: { storageEngine: 'ephemeralForTest' }
+    });
     const uri = mem.getUri();
     await mongoose.connect(uri, { autoIndex: true });
   };

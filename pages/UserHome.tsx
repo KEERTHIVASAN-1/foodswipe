@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useApp } from '../store';
-import { api } from '@/client/api';
+import { api } from '@/api';
 import gsap from 'gsap';
 
 interface UserHomeProps {

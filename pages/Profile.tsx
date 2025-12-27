@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../store';
-import { api } from '@/client/api';
+import { api } from '@/api';
 
 const Profile: React.FC = () => {
   const { currentUser } = useApp();
